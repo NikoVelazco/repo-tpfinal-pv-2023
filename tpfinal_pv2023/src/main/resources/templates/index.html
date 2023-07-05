@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Inicio</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina">BIENVENIDO/A A VIDA SANA</h2>
+		</div>
+		<div class="container my-3">
+        	<div class="row">
+            	<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 my-2">
+            		<div class="card cuerpo-tarjeta" style="width: 100%;">
+  						<img th:src="@{/images/pareja.jpeg}" id="imagen-tarjeta" class="card-img-top" alt="pareja-ancianos">
+  						<div class="card-body cuerpo-texto-tarjeta">
+    						<h5 class="card-title titulo-tarjeta">¿QUIENES SOMOS?</h5>
+    							<p class="card-text parrafo-tarjeta">En Vida Sana, nos apasiona promover un estilo de vida saludable y equilibrado. Creemos firmemente en el poder de una alimentación nutritiva y consciente para mejorar la calidad de vida.
 
-</body>
+										Nuestro objetivo es brindarte información valiosa y consejos prácticos para que puedas tomar decisiones informadas sobre tu salud y bienestar. Encontrarás una amplia variedad de recursos que abarcan desde recetas saludables y deliciosas hasta guías de alimentación específicas para diferentes necesidades y objetivos.
+
+										Creemos que la salud es un viaje continuo y personal, por lo que te ofrecemos herramientas para que puedas adaptar tu estilo de vida de manera sostenible. No se trata solo de seguir modas pasajeras, sino de cultivar hábitos saludables a largo plazo que te ayuden a sentirte bien por dentro y por fuera.
+
+										En Vida Sana, valoramos la evidencia científica y trabajamos en colaboración con expertos en nutrición y salud para asegurarnos de proporcionarte información confiable y actualizada. Nuestro compromiso es brindarte contenido de calidad que te inspire a tomar decisiones positivas para tu salud y la de tu familia.
+
+										Te invitamos a explorar nuestro sitio y unirte a nuestra comunidad comprometida con el bienestar. Juntos, podemos construir un estilo de vida saludable y equilibrado que nos permita disfrutar plenamente de la vida.</p>
+  					   </div>
+				  </div>
+            	</div>
+            	<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 my-2">
+            		<div class="card cuerpo-tarjeta" style="width: 100%;">
+  					 	<img th:src="@{/images/alimento.jpg}" id="imagen-tarjeta" class="card-img-top" alt="alimentos">
+  						<div class="card-body cuerpo-texto-tarjeta">
+    						<h5 class="card-title titulo-tarjeta">INFORMACIÓN</h5>
+    						<p class="card-text parrafo-tarjeta">En nuestro sitio, nos enfocamos en proporcionar información y recursos confiables sobre la salud nutricional. Nuestro objetivo es ayudarte a tomar decisiones informadas para mejorar tu bienestar a través de una alimentación adecuada y equilibrada.</p>
+  						</div>
+					</div>
+					<div class="card cuerpo-tarjeta my-2" style="width: 100%;">
+  						<img th:src="@{/images/nutriciones.jpg}" id="imagen-tarjeta" class="card-img-top" alt="nutricion">
+  						<div class="card-body cuerpo-texto-tarjeta">
+   	 						<h5 class="card-title titulo-tarjeta">NUTRICIÓN SALUDABLE</h5>
+    						<ul>
+						        <li class="parrafo-tarjeta">Energía y vitalidad óptimas.</li>
+						        <li class="parrafo-tarjeta">Mantenimiento de un peso saludable.</li>
+						        <li class="parrafo-tarjeta">Mejora del sistema inmunológico.</li>
+						        <li class="parrafo-tarjeta">Reducción del riesgo de enfermedades crónicas.</li>
+						        <li class="parrafo-tarjeta">Mejora del rendimiento mental y físico.</li>
+      						</ul>
+  						</div>
+					</div>
+		      </div>
+          </div>
+       </div>
+       <div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
 </html>
