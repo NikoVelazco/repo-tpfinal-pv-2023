@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +64,8 @@ public class TestimonioServiceMysqlImp implements ITestimonioService{
 	public Testimonio getBy(Long id) {
 		return testimonioRepository.findById(id).get();
 	}
+	
+	public List<Testimonio> buscarTestimonioPorFecha(LocalDate fecha) {
+        return testimonioRepository.findByFecha(fecha);
+    }
 }
