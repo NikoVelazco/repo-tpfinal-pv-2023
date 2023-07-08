@@ -72,4 +72,10 @@ public class TestimonioServiceImp implements ITestimonioService {
 
 		return testimonioEncontrado;
 	}
+	
+	@Override
+	public List<Testimonio> buscarTestimonioPorFecha(LocalDate fecha) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

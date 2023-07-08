@@ -1,7 +1,11 @@
 package ar.edu.unju.fi.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Testimonio;
 import ar.edu.unju.fi.service.ITestimonioService;
@@ -124,5 +129,19 @@ public class TestimonioController {
 		Testimonio testimonioEncontrado = testimonioService.getBy(id);
 		testimonioService.eliminar(testimonioEncontrado);
 		return "redirect:/testimonio/listado";
+	}
+	/**
+	 * 
+	 * @param fecha
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/buscar")
+	public String buscarTestimonioPorFecha(@RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha, Model model) {
+		List<Testimonio> testimonios = testimonioService.buscarTestimonioPorFecha(fecha);
+	   
+		model.addAttribute("fecha", fecha);
+		model.addAttribute("testimonio", testimonios);
+	    return "testimonio";
 	}
 }
