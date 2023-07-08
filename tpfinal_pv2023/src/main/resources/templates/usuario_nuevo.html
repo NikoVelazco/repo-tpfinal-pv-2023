@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Usuarios</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h1 class="titulo-pagina" th:text="${modificar}?'MODIFICAR USUARIO':'REGISTRAR USUARIO'"></h1>
+		</div>
+		<div class="container my-3">
+			<div class="row">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 my-2">
+					<section class="d-flex justify-content-center align-items-center">
+						<div class="card col-xs-12 col-sm-6 col-md-6 col-lg-4 p-4 formulario-mensaje" style="width: 100%;">
+		    				<form class="letra-form" th:action="${modificar}?@{/usuario/modificar}:@{/usuario/guardar}" th:object="${usuario}" method="post">
+								<div class="mb-3">
+								   <label for="admin" class="form-label">Tipo de Usuario:</label>
+							       <select th:field="*{rolUsuario}" class="form-select" id="admin" name="admin" placeholder="Seleccionar">
+							        <option th:value="true">Root</option>
+							        <option th:value="false">Comun</option>
+							    </select>
+							    <div class="text-danger" th:if="${#fields.hasErrors('rolUsuario')}" th:errors="*{rolUsuario}"></div>
+							   </div>
+		        				<div class="mb-3"> 
+		            				<div>
+		                				<label for="nombre">Nombre: </label>
+		                				<input type="text" class="form-control" name="nombre" id="nombre" placeholder= "Ingrese su nombre" th:field="*{nombre}">
+		                				<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+		            				</div>
+		        				</div>
+		        				<div class="mb-3"> 
+		            				<div>
+		                				<label for="apellido">Apellido:</label>
+		                				<input type="text" class="form-control" name="apellido" id="apellido" placeholder= "Ingrese su apellido" th:field="*{apellido}">
+		                				<div class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>    
+		            				</div>
+		        				</div>
+		        				<div class="mb-3">
+		              				<div>
+		                				<label for="email" class="form-label">Email:</label>
+		                				<input type="email" class="form-control" id="email" placeholder="name@example.com" th:field="*{email}">
+		                				<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div> 
+		             				</div>
+		        				</div>
+		        				<div class="mb-3"> 
+					                <div>
+					                    <label for="fecha">Fecha de nacimiento:</label>
+					                    <input type="date" class="form-control" name="fecha" id="fecha" th:field="*{fechaNacimiento}"> 
+					                    <div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>  
+					                </div>
+		            			</div>
+		        				<div class="mb-3"> 
+					                <div>
+					                    <label for="tell">Telefono:</label>
+					                    <input type="tel" class="form-control" name="tell" id="tell" placeholder= "Ingrese su numero de celular" th:field="*{telefono}">
+					                    <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div> 
+					                </div>
+		            			</div>
+		            		   <div class="mb-3">
+								   <label for="sexo">Sexo:</label>
+							       <select th:field="*{sexo}" class="form-select" id="sexo" name="sexo" placeholder="Seleccionar">
+							        <option value="" selected >Seleccionar</option>
+							        <option th:value="Masculino">Masculino</option>
+							        <option th:value="Femenino">Femenino</option>
+							    </select>
+		            		   <div class="mb-3"> 
+					                <div>
+					                  <label for="estatura">Estatura:</label>
+					                  <input type="number" class="form-control" name="estatura" step="0.01"  id="estatura" placeholder= "Ingrese su estatura" th:field="*{estatura}">
+					                  <div class="text-danger" th:if="${#fields.hasErrors('estatura')}" th:errors="*{estatura}"></div> 
+					                </div>
+		            		   </div>
+							    <div class="text-danger" th:if="${#fields.hasErrors('rolUsuario')}" th:errors="*{rolUsuario}"></div>
+							   </div>
+		        			   <div class="form-group d-flex justify-content-between">
+							  		<div class="btn-group btn-group-sm" role="group">
+										<button type="submit" th:text="${modificar}?'Modificar':'Registrar'" class="btn" id="boton-contacto" ></button>
+							    		<a class="btn btn-secondary mx-2" th:href="@{/index}" role="button">Cancelar</a>
+							  		</div>
+							   </div>
+		        		   </form>
+		        		</div>
+					</section>
+				</div>
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 my-2">
+					<div class="cuerpo-titulo">
+						<h2 class="titulo-pagina">CURIOSIDAD</h2>
+					</div>
+					<div class="card cuerpo-tarjeta" style="width: 100%;">
+  					 	<img th:src="@{/images/Limon.webp}" id="imagen-tarjeta" class="card-img-top" alt="alimentos">
+  						<div class="card-body cuerpo-texto-tarjeta">
+    						<h5 class="card-title titulo-tarjeta">LIMÓN</h5>
+    						<p class="card-text parrafo-tarjeta">Los limones tienen un alto contenido en vitamina C, vitamina B, calcio y hierro entre otros. Por su contenido de antioxidantes, es considerado un alimento diurético, el cual elimina líquidos y sustancias tóxicas retenidas en nuestro cuerpo. Es un gran aliado para limpiar nuestro cuerpo y prevenir muchas enfermedades. Además, tiene propiedades antibióticas y antivirales.</p>
+  						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
