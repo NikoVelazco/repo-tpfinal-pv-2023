@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Usuarios</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header>
+					<nav class="navbar navbar-expand-lg bg-body-tertiary" id="fondo-color-nav">
+		        	<div class="container">
+		          		<img th:src="@{/images/vidasana.png}" class="rounded float-start navbar-brand" id="imagen-logo-vidasana" alt="logo-vidasana">
+		        	</div>
+	      		</nav>
+			</header>
+		</div>
+      	<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina">RECIBA SU ID</h2>
+		</div>
+		<div class="container my-2 py-2">
+			<div style="text-align: center;">
+        		<h1>¡Registración Exitosa!</h1>
+        		<p>Su número de id es: <span th:text="${idUserGenerate}"></span></p>
+        		<div class="card-buttons">
+            		<a href="/index" class="btn" id="boton-contacto" style="color: dark;">Volver al Inicio</a>
+        		</div>
+    		</div>
+		</div>
+		<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
