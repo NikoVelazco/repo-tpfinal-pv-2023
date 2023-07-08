@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Nuevo Testimonio</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		
+		<div class="container">
+		  <div class="container-fluid "> 
+		 			<div class="row justify-content-center ">		 	  			
+			 	 				<h1 class="titulo_testimonio" th:text="${edicion}?'MODIFICAR TESTIMONIO':'NUEVO TESTIMONIO'"></h1>		 					
+					</div>	
+		</div>
+		
+		
+			  
+			  <form class="row g-3 needs-validation" novalidate th:action="${edicion}?@{/testimonio/modificar}:@{/testimonio/guardar}" th:object="${testi}"  method="post">
+					  
+					
+					  <div class="col-6 bg-success p-2 text-dark bg-opacity-50"  >
+					  <div class="mb-3" th:if="${edicion}">
+					    <label for="id" class="form-label">ID</label>
+					    <input type="number" class="form-control" id="id" th:field="*{id}" placeholder="Id" name="id" readonly>
+					    	<input type="hidden" th:field="*{id}"> 
+					  </div>
+					  <div class="mb-3">
+					    <label for="usuario" class="form-label">USUARIO: </label>
+					    <input type="text" class="form-control" id="usuario" th:field="*{usuario}"placeholder="Usuario" name="usuario">
+					   <div class ="text-danger" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
+					  </div>
+					  
+					   <div class="mb-3 ">
+					    <label for="fecha" class="form-label">FECHA: </label>
+					    <input type="date" class="form-control" id="fecha" th:field="*{fecha}"placeholder="Fecha" name="fecha">
+					  <div class="text-danger" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+					  </div>
+					 
+					  <div class="mb-3 " >
+							<label for="opinion" class="form-label">DEJANOS TUS COMENTARIOS: </label>
+							<textarea class="form-control" id="opinion" rows="6" th:field="*{comentario}" placeholder="Opinión o Sugerencia" name="opinion"></textarea>
+						 <div class ="text-danger" th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}"></div>
+						</div>
+					 
+					 <input type="submit" class="btn btn-success" th:value="${edicion}?'Modificar':'Guardar'">  
+					  <a class="btn btn-success" th:href="@{/testimonio/listado}" role="button">Cancelar</a>
+					 
+					  </div><br>
+			</form>
+			     				
+		</div>
+		
+        <div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
