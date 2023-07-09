@@ -52,12 +52,12 @@ public class GestionController {
 					switch (numero){
 					case 1: return "redirect:/recetas/nuevo";
 					case 2: return "redirect:/recetas/ediciones";
-					case 3: return "redirect:/recetas/nuevo";
-					case 4: return "redirect:/ingredientes/nuevo";
-					case 5: return "redirect:/ingredientes/ediciones";
-					case 6: return "redirect:/recetas/nuevo";
-					case 7: return "redirect:/recetas/nuevo";
-					case 8: return "redirect:/recetas/nuevo";					
+					case 3: return "redirect:/ingredientes/nuevo";
+					case 4: return "redirect:/ingredientes/listado";
+					case 5: return "redirect:/ingredientes/listado"; /*agregar ruta a formulario de usuario adminstrador*/
+					case 6: return "redirect:/recetas/nuevo"; /*agregar ruta edicion de usuarios*/
+					case 7: return "redirect:/recetas/nuevo"; /*agregar ruta edicion detestimonio*/
+										
 					}					
 				}
 				else {
