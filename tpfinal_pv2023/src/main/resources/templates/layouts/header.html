@@ -31,7 +31,7 @@
 								</div>
         					</li>
 	              			<li class="nav-item">
-	                			<a class="nav-link" th:href="@{/recetas}" id="letra-nav">Recetas</a>
+	                			<a class="nav-link" th:href="@{/recetas/listado}" id="letra-nav">Recetas</a>
 	              			</li>
 	              			<li class="nav-item">
 	                			<a class="nav-link" th:href="@{/testimonio/listado}" id="letra-nav">Testimonios</a>
@@ -39,9 +39,23 @@
 	              			<li class="nav-item">
 	                			<a class="nav-link" th:href="@{/contactos}" id="letra-nav">Contáctanos</a>
 	              			</li>
-	              			<li class="nav-item">
-	                			<a class="nav-link"  th:href="@{/gestion}" id="letra-nav">Gestión de Datos</a>
-	              			</li>
+	              			<li class="nav-item dropdown" style="margin-right: auto;">
+          						<a class="nav-link dropdown-toggle" id="letra-nav"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            						Gestión de Datos
+          						</a>
+          						<div class="fondo-drop ml-auto" style="right: 0; left: unset;">
+									<ul class="dropdown-menu">
+            							<li><a class="dropdown-item"  id="letra-drop" th:href="@{/recetas/nuevo}">Alta Receta</a></li>
+           	 							<li><a class="dropdown-item" id="letra-drop" th:href="@{/recetas/ediciones}">Modificar/Eliminar Receta</a></li>
+           	 							<li><a class="dropdown-item"  id="letra-drop" th:href="@{/ingredientes/nuevo}">Alta Ingrediente</a></li>
+           	 							<li><a class="dropdown-item" id="letra-drop" th:href="@{/ingredientes/listado}">Modificar/Eliminar Ingrediente</a></li>
+           	 							<li><a class="dropdown-item" id="letra-drop" th:href="@{/servicios/pesoideal}">Alta Usuario</a></li>
+           	 							<li><a class="dropdown-item" id="letra-drop" th:href="@{/servicios/pesoideal}">Modificar/Eliminar Usuario</a></li>
+           	 							<li><a class="dropdown-item mr-auto"  id="letra-drop" th:href="@{/servicios/pesoideal}">Modificar/Eliminar Testimonio</a></li>
+           	 							<li><a class="dropdown-item mr-auto"  id="letra-drop" th:href="@{/gestion/inicio(numero=6)}">Prueba</a></li>
+          							</ul>
+								</div>
+        					</li>
 	            	   </ul>
 	          		</div>
 	        	</div>
