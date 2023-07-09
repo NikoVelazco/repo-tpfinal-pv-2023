@@ -10,7 +10,7 @@ import ar.edu.unju.fi.service.IUsuarioService;
 /**
  * @author Grupo9
  */
-@Service("UsuarioServiceMysql")
+@Service("UsuarioServiceMysqlImp")
 public class UsuarioServiceMysqlImp implements IUsuarioService{
 
 	/**
@@ -48,7 +48,7 @@ public class UsuarioServiceMysqlImp implements IUsuarioService{
 	 * Obtiene usuario por id
 	 */
 	@Override
-	public Usuario getBy(Long id) {
+	public Usuario findByUser(Long id) {
 		// TODO Auto-generated method stub
 		return usuarioRepository.findById(id).get();
 	}
@@ -57,9 +57,9 @@ public class UsuarioServiceMysqlImp implements IUsuarioService{
 	 * Método para modificar un usuario
 	 */
 	@Override
-	public void modificarUsuario(Usuario usuario, Long id) {
+	public void modificarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
-		usuario.setId(id);
+		usuario.setId(usuario.getId());
 		usuario.setEstado(true);
 		usuarioRepository.save(usuario);
 	}
@@ -79,6 +79,21 @@ public class UsuarioServiceMysqlImp implements IUsuarioService{
 	public Usuario getUsuario() {
 		// TODO Auto-generated method stub
 		return usuario;
+	}
+	
+	/**
+	 * Método para comprobar la existencia de un usuario
+	 */
+	@Override
+	public boolean comprobarExistenciaUsuario(Long id) {
+		boolean existeUsuario = false;
+		for (Usuario usuario : getListaUsuario()) {
+			if (usuario.getId() == id) {
+				existeUsuario = true;
+				break;
+			}
+		}
+		return existeUsuario;
 	}
 
 }

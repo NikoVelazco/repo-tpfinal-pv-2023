@@ -28,7 +28,7 @@ public class UsuarioController {
 	 * la interfaz es IUsuarioService
 	 */
 	@Autowired
-	@Qualifier("UsuarioServiceMysql")
+	@Qualifier("UsuarioServiceMysqlImp")
 	private IUsuarioService usuarioService;
 	
 	/**
@@ -75,7 +75,7 @@ public class UsuarioController {
 	public String getModificarUsuarioPage(@PathVariable(value="id")Long id, Model model) {
 		boolean modificar = true;
     	model.addAttribute("modificar", modificar);
-    	Usuario usuarioEncontrado = usuarioService.getBy(id);
+    	Usuario usuarioEncontrado = usuarioService.findByUser(id);
 		model.addAttribute("usuario", usuarioEncontrado);
 		return "usuario_nuevo";
 	}
@@ -89,7 +89,7 @@ public class UsuarioController {
 	 */
 	@PostMapping("/modificar")
 	public String modificarUsuario(@Valid @ModelAttribute("usuario")Usuario usuario, BindingResult result, Model model) {
-		Usuario usuarioEncontrado = usuarioService.getBy(usuario.getId());
+		Usuario usuarioEncontrado = usuarioService.findByUser(usuario.getId());
 	    boolean modificar = true;
 		if (result.hasErrors()) {
 			usuario.setId(usuarioEncontrado.getId());
@@ -97,7 +97,7 @@ public class UsuarioController {
 			model.addAttribute("modificar", modificar);
 			return "usuario_nuevo";
 		} else {
-			usuarioService.modificarUsuario(usuarioEncontrado, usuario.getId());
+			usuarioService.modificarUsuario(usuarioEncontrado);
 			return "redirect:/usuario/listado";
 		}
 	}
@@ -109,7 +109,7 @@ public class UsuarioController {
 	 */
 	@GetMapping("/eliminar/{id}")
 	public String eliminarUsuario(@PathVariable(value="id")Long id) {
-		Usuario usuarioEncontrado = usuarioService.getBy(id);
+		Usuario usuarioEncontrado = usuarioService.findByUser(id);
 		usuarioService.eliminarUsuario(usuarioEncontrado);
 		return "redirect:/usuario/listado";
 	}
