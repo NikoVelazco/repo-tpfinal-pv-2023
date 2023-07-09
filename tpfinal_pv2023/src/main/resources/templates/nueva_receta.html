@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>RECETAS</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container">	
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina" th:text="${edicion}?'MODIFICAR RECETA':'NUEVA RECETA'"></h2>
+		</div>	
+		<div class="container-fluid my-3 pb-3 pt-3">			
+				<div class="row justify-content-center">
+					<div class="col-6">
+						<form class="row g-3 needs-validation" novalidate th:action="${edicion}?@{/recetas/modificar}:@{/recetas/guardar}" th:object="${receta}" method="post">
+						
+						 	  <div class="row mb-3" th:if="${edicion}" >
+    								<label for="id_receta" class="col-sm-3 col-form-label">ID: </label>
+    								<div class="col-sm-9">
+       									 <input type="text" class="form-control" id="id_receta" name="id_receta" th:value="${receta.id}" readonly>
+       									 <input type="hidden" th:field="*{id}"> 
+   									</div>      									
+							 </div>							 	  
+						 	  <div class="row mb-3">						 	  		
+							  		<label for="nombre_receta" class="col-sm-3 col-form-label">NOMBRE: </label>
+							  		<div class="col-sm-9">
+							  			 <input type="text" class="form-control" id="nombre_receta" placeholder="Nombre Receta" name="nombre_ingre" th:field="*{nombre}">							  			 
+							  			 <div class ="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>							  			 
+							  			 <!-- muestra mensaje de error si existe erorr -->
+							  		</div>					  
+							  </div>
+							  <div class="row mb-3">
+							  		<label for="categoria_receta" class="col-sm-3 col-form-label">RECETA: </label>
+							  		<div class="col-sm-9">
+							  			<select class="form-control" id="categoria_receta" name="categoria_receta"  th:field="*{categoria}" >						
+											<option value="" selected>Seleccione una opción</option>
+											<option value="CARNES" th:selected="${receta.categoria == 'CARNES'}">CARNES</option>
+											<option value="BEBIDAS" th:selected="${receta.categoria == 'BEBIDAS'}">BEBIDAS</option>
+											<option value="DULCES" th:selected = "${receta.categoria == 'DULCES'}">DULCES</option>
+											<option value="ENSALADAS" th:selected = "${receta.categoria == 'ENSALADAS'}">ENSALADAS</option>
+											<option value="LEGUMBRES-Y-CEREALES" th:selected = "${receta.categoria == 'LEGUMBRES Y CEREALES'}">LEGUMBRES Y CEREALES</option>											
+											<option value="PESCADOS" th:selected = "${receta.categoria == 'PESCADOS'}">PESCADOS</option>
+											<option value="PAN" th:selected = "${receta.categoria == 'PAN'}">PAN</option>
+											<option value="SOPAS-Y-CREMAS" th:selected = "${receta.categoria == 'SOPAS Y CREMAS'}">SOPAS Y CREMAS</option>
+										</select>					  			 
+							  			 <div class ="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+							  			 <!-- muestra mensaje de error si existe erorr -->
+							  		</div>					  
+							  </div>
+							  <div class="row mb-3">
+							  		<label for="ingre_receta" class="col-sm-3 col-form-label">INGREDINETES: </label>
+							  		<div class="col-sm-9">
+							  			<th:block th:each="p: ${ingredientes}">
+							                <label>
+							                    <input type="checkbox" name="ingredientes" th:value="${p.id}"
+							                        th:checked="${receta.ingredientes != null and receta.ingredientes.contains(p)}">
+							                    <span th:text="${p.nombre}"></span>
+							                </label>
+							            </th:block>
+								  		<!--  	<select class="form-select" id="ingre_receta" name="ingre_receta"  th:field="*{ingredientes}" multiple>						
+												<option th:each="p: ${ingredientes}" th:value="${p}" th:text="${p.nombre}" th:selected="${receta.ingredientes != null and receta.ingredientes.contains(p)}"></option>										
+												<!-- se llama a la clase ingrediente para completar el select -->
+										<!--  	</select> -->	
+										<p class="text-danger" th:if="${ingredientes.empty}">Debe agregar ingredientes a la BD de Ingredientes.</p>					  			 
+								  			<div class ="text-danger" th:if="${#fields.hasErrors('ingredientes')}" th:errors="*{ingredientes}"></div>
+								  	</div>					  
+							  </div>
+							  <div class="row mb-3">
+							  		<label for="preparacion_receta" class="col-sm-3 col-form-label">PREPARACION: </label>
+							  		<div class="col-sm-9">
+							  			<textarea class="form-control" id="preparacion_recetan" name="preparacion_receta" rows="6" th:field="*{preparacion}" placeholder="Ingrese la preparacion de la receta"></textarea>
+							  			<div class ="text-danger" th:if="${#fields.hasErrors('preparacion')}" th:errors="*{preparacion}"></div>
+							  			<!-- muestra mensaje de error si existe erorr -->
+							  		</div>					  
+							  </div>
+							  <div class="row mb-3">						 	  		
+							  		<label for="imagen_receta" class="col-sm-3 col-form-label">IMAGEN: </label>
+							  		<div class="col-sm-9">
+							  			
+							  			 <select class="form-control" id="imagen_receta" name="imagen_receta"  th:field="*{imagen}" >						
+											<option value="" selected>Seleccione una opción</option>
+											<option value="Carnes1.jpg" th:selected="${receta.imagen == 'Carnes1.jpg'}">Carnes 1</option>
+											<option value="Carnes2.jpg" th:selected="${receta.imagen == 'Carnes2.jpg'}">Carnes 2</option>
+											<option value="Carnes3.jpg" th:selected="${receta.imagen == 'Carnes3.jpg'}">Carnes 3</option>
+											<option value="Carnes4.jpg" th:selected="${receta.imagen == 'Carnes4.jpg'}">Carnes 4</option>
+											<option value="Bebidas1.jpg" th:selected="${receta.imagen == 'Bebidas1.jpg'}">Bebidas 1</option>
+											<option value="Bebidas2.jpg" th:selected="${receta.imagen == 'Bebidas2.jpg'}">Bebidas 2</option>
+											<option value="Bebidas3.jpg" th:selected="${receta.imagen == 'Bebidas3.jpg'}">Bebidas 3</option>
+											<option value="Bebidas4.jpg" th:selected="${receta.imagen == 'Bebidas4.jpg'}">Bebidas 4</option>
+											<option value="Dulces1.jpg" th:selected="${receta.imagen == 'Dulces1.jpg'}">Dulces 1</option>
+											<option value="Dulces2.jpg" th:selected="${receta.imagen == 'Dulces2.jpg'}">Dulces 2</option>
+											<option value="Dulces3.jpg" th:selected="${receta.imagen == 'Dulces3.jpg'}">Dulces 3</option>
+											<option value="Dulces4.jpg" th:selected="${receta.imagen == 'Dulces4.jpg'}">Dulces 4</option>
+											<option value="Ensaladas1.jpg" th:selected="${receta.imagen == 'Ensaladas1.jpg'}">Ensaladas 1</option>
+											<option value="Ensaladas2.jpg" th:selected="${receta.imagen == 'Ensaladas2.jpg'}">Ensaladas 2</option>
+											<option value="Ensaladas3.jpg" th:selected="${receta.imagen == 'Ensaladas3.jpg'}">Ensaladas 3</option>
+											<option value="Ensaladas4.jpg" th:selected="${receta.imagen == 'Ensaladas4.jpg'}">Ensaladas 4</option>
+											<option value="Legumbres1.jpg" th:selected="${receta.imagen == 'Legumbres1.jpg'}">Legumbres 1</option>
+											<option value="Legumbres2.jpg" th:selected="${receta.imagen == 'Legumbres2.jpg'}">Legumbres 2</option>
+											<option value="Legumbres3.jpg" th:selected="${receta.imagen == 'Legumbres3.jpg'}">Legumbres 3</option>
+											<option value="Legumbres4.jpg" th:selected="${receta.imagen == 'Legumbres4.jpg'}">Legumbres 4</option>
+											<option value="Pescados1.jpg" th:selected="${receta.imagen == 'Pescados1.jpg'}">Pescados 1</option>
+											<option value="Pescados2.jpg" th:selected="${receta.imagen == 'Pescados2.jpg'}">Pescados 2</option>
+											<option value="Pescados3.jpg" th:selected="${receta.imagen == 'Pescados3.jpg'}">Pescados 3</option>
+											<option value="Pescados4.jpg" th:selected="${receta.imagen == 'Pescados4.jpg'}">Pescados 4</option>
+											<option value="Pan1.jpg" th:selected="${receta.imagen == 'Pan1.jpg'}">Pan 1</option>
+											<option value="Pan2.jpg" th:selected="${receta.imagen == 'Pan2.jpg'}">Pan 2</option>
+											<option value="Pan3.jpg" th:selected="${receta.imagen == 'Pan3.jpg'}">Pan 3</option>
+											<option value="Pan4.jpg" th:selected="${receta.imagen == 'Pan4.jpg'}">Pan 4</option>
+											<option value="Sopas1.jpg" th:selected="${receta.imagen == 'Sopas1.jpg'}">Sopas 1</option>
+											<option value="Sopas2.jpg" th:selected="${receta.imagen == 'Sopas2.jpg'}">Sopas 2</option>
+											<option value="Sopas3.jpg" th:selected="${receta.imagen == 'Sopas3.jpg'}">Sopas 3</option>
+											<option value="Sopas4.jpg" th:selected="${receta.imagen == 'Sopas4.jpg'}">Sopas 4</option>											
+										</select>						  			 						  			 
+							  			 <div class ="text-danger" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>							  			 
+							  			 <!-- muestra mensaje de error si existe erorr -->
+							  		</div>					  
+							  </div>
+							  					
+		  				
+		  				<div class="col-12">
+		  					
+		  					<input type="submit" class="btn btn-success" th:value="${edicion}?'MODIFICAR':'GUARDAR'">
+							<a class="btn btn-success" th:href="@{/recetas/ediciones}" role="button">CANCELAR</a>
+		  				</div>
+					</form>
+					</div>
+				</div>	
+		</div>
+		
+		
+	</div>
+	
+	
+	
+  	<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    </div>
+    <script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 	
+	</body>
+</html>

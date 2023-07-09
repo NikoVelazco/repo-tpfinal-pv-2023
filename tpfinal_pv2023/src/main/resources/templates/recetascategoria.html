@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Recetas</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container">
+	
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina" th:text="${edicion}?'EDITAR RECETAS':'RECETAS DE '+ ${tipo}"></h2>
+		</div>		
+	</div>
+	<div class="container" >
+			<div class="row justify-content-center">
+						<div th:each="rece, iterStat : ${recetas}"class="col-6 my-3 mx-3">
+							<div class="card h-100" >
+								<div class="card-header">
+                					<h4 class="text-success-emphasis" th:text="${rece.nombre}"></h4>
+                					<a th:if="${edicion}" th:href="@{/recetas/modificar/}+${rece.id}"><button type="button" class="btn btn-success btn-sm">MODIFICAR</button></a> 
+										<a th:if="${edicion}" th:href="@{/recetas/eliminar/}+${rece.id}"><button type="button" class="btn btn-success btn-sm">ELIMINAR</button></a>
+           						 </div>
+								<img th:src="@{/uploads/} + ${rece.imagen}" class="card-img-top img-fluid" alt="Foto Recetas Carnes">
+								<div class="card-body" style="max-height: 180px; overflow: auto;">
+									<p class="card-text">
+									<h5 class="text-success-emphasis">INGREDIENTES</h5>
+                   						 <ul>
+                        					<li th:each="ingrediente : ${rece.ingredientes}" th:text="${ingrediente.nombre}"></li>
+                    					</ul>
+                					</p>
+                					<h5 class="text-success-emphasis">PREPARACION</h5>
+               						<p class="card-text" th:text="${rece.preparacion}"></p>							  
+									
+								</div>
+							</div>
+						</div>
+			</div>
+	</div>	
+	
+	<div class="container">	
+	  	<div class="container pie-pagina mb-3">
+	    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+	    </div>
+	 </div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 	
+	</body>
+</html>
