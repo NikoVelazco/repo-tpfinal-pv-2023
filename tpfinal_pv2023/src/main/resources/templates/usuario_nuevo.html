@@ -68,13 +68,15 @@
 					                    <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div> 
 					                </div>
 		            			</div>
-		            		   <div class="mb-3">
+							   <div class="mb-3">
 								   <label for="sexo">Sexo:</label>
 							       <select th:field="*{sexo}" class="form-select" id="sexo" name="sexo" placeholder="Seleccionar">
-							        <option value="" selected >Seleccionar</option>
-							        <option th:value="Masculino">Masculino</option>
-							        <option th:value="Femenino">Femenino</option>
-							    </select>
+							       		<option value="" selected >Seleccionar</option>
+							        	<option th:value="Masculino">Masculino</option>
+							        	<option th:value="Femenino">Femenino</option>
+							      </select>
+							      <div class="text-danger" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div> 
+							   </div>
 		            		   <div class="mb-3"> 
 					                <div>
 					                  <label for="estatura">Estatura:</label>
@@ -82,8 +84,6 @@
 					                  <div class="text-danger" th:if="${#fields.hasErrors('estatura')}" th:errors="*{estatura}"></div> 
 					                </div>
 		            		   </div>
-							    <div class="text-danger" th:if="${#fields.hasErrors('rolUsuario')}" th:errors="*{rolUsuario}"></div>
-							   </div>
 		        			   <div class="form-group d-flex justify-content-between">
 							  		<div class="btn-group btn-group-sm" role="group">
 										<button type="submit" th:text="${modificar}?'Modificar':'Registrar'" class="btn" id="boton-contacto" ></button>

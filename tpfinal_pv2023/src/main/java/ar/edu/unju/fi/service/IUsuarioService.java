@@ -8,12 +8,16 @@ import java.util.List;
  * Interfaz IUsuarioService
  */
 public interface IUsuarioService {
+	//public Usuario obtenerUsuario();
+	//public List<Usuario> obtenerLista();
+	//public Usuario buscarUsuario(Long id);
+	//public boolean existeUsuario(Long id);
 	
 	List<Usuario> getListaUsuario();
-	void guardarUsuario (Usuario usuario);
-	Usuario getBy(Long id);
-	void modificarUsuario(Usuario usuario, Long id);
-	void eliminarUsuario(Usuario usuarioEncontrado);
 	Usuario getUsuario();
-	
+	void guardarUsuario(Usuario usuario);
+	void modificarUsuario(Usuario usuario);
+	void eliminarUsuario(Usuario usuario);
+	Usuario findByUser(Long id);
+	boolean comprobarExistenciaUsuario(Long id);
 }
