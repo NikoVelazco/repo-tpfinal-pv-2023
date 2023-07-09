@@ -113,6 +113,36 @@ header #fondo-color-nav{
 
 /* FIN PIE DE PÁGINA */
 
+/* PÁGINA CONTACTOS*/
+.formulario-mensaje{
+	background-color: #9CCC65;
+	box-shadow: -3px 5px 3px 0px #555;
+}
+
+.letra-form{
+	color: white;
+}
+
+#boton-contacto{
+	background-color: #18FFFF;
+	color: white;
+}
+
+.redes-sociales{
+	text-align: center;
+}
+
+.enlace-redes{
+	text-decoration: none;
+	background-color: #00E676;
+	border: 5px solid #E8F5E9;
+	color: white;
+	font-size: 30px;
+	box-shadow: -3px 5px 3px 0px #555;
+}
+
+/*FIN PÁGINA CONTACTOS*/
+
 /* PAGINA TESTIMONIOS */
 .titulo-testimonio {
 		background-color: #00E676;
@@ -122,29 +152,30 @@ header #fondo-color-nav{
 		font-size: 30px;
 		box-shadow: -3px 5px 3px 0px #555;
 }
-.card-title {
+.card-title-testimonio {
 		font-family: 'Play', sans-serif;
 		color: black;
 }
 
-.card-text{
+.card-text-testimonio{
 		font-family: 'Play', sans-serif;
 		color: black;
 }
 
-.card-body {
+.card-body-testimonio {
 		font-family: 'Play', sans-serif;
 		color: black;
 }
 
-.list-group {
+.list-group-testimonio {
 		font-family: 'Play', sans-serif;
 		color: black;
 }
 
-.card {
+.card-testimonio {
 		background-color: #00E676;
 		color: black;
 }
 
 /* FIN PAGINA TESTIMONIOS*/
+

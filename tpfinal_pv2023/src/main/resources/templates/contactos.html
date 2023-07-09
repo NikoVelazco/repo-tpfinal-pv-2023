@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Contáctenos</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina">CONTÁCTENOS</h2>
+		</div>
+		<div class="container my-2">
+			<div>					
+				<div style="font-family: Helvetica; text-align: center; font-size: 28px;">
+					<p >3915 Av. General Belgrano, 388-4221750.<br>
+					Lunes a Viernes: 9:00 a.m a 8:00 p.m.<br>
+					Sabado y Domingo: 9:00 a.m a 12:30 p.m.<br>
+					<a href='https://accounts.google.com'>contactos@mail.com.ar</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="container my-2">
+			<div class="row redes-sociales">
+				<div class="col-4">
+					<a class="enlace-redes" href='https://facebook.com'>FACEBOOK</a>
+				</div>
+				<div class="col-4">
+					<a class="enlace-redes" href='https://instagram.com'>INSTAGRAM</a>
+				</div>
+				<div class="col-4">
+					<a  class="enlace-redes" href='https://twitter.com'>TWITTER</a>
+				</div>
+			</div>
+		</div>
+			<section class="d-flex justify-content-center align-items-center my-3">
+				<div class="card col-xs-12 col-sm-6 col-md-6 col-lg-4 p-4 formulario-mensaje">
+    				<form class="letra-form">
+        				<div class="mb-3"> 
+            				<div>
+                				<label for="nombre">Nombre: </label>
+                				<input type="text" class="form-control" name="nombre" id="nombre" placeholder= "Ingrese su nombre" required>
+            				</div>
+        				</div>
+        				<div class="mb-3"> 
+            				<div>
+                				<label for="apellido">Apellido:</label>
+                				<input type="text" class="form-control" name="apellido" id="apellido" placeholder= "Ingrese su apellido" required>    
+            				</div>
+        				</div>
+        				<div class="mb-3">
+              				<div>
+                				<label for="email" class="form-label">Email:</label>
+                				<input type="email" class="form-control" id="email" placeholder="name@example.com">
+             				</div>
+        				</div>
+        				<div class="mb-3"> 
+            				<div>
+              					<label for="estatura">Provincia:</label>
+              					<select class="form-select" id="provincia" name="provincia" >						
+									<option value="">Seleccione una provincia</option>
+									<option value="Jujuy">Jujuy</option>
+									<option value="Cordoba">Córdoba</option>
+									<option value="Salta">Salta</option>
+									<option value="Buenos Aires">Buenos Aires</option>
+									<option value="Tucuman">Tucumán</option>
+									<option value="Santa Fe">Santa Fe</option>
+									<option value="Tierra del Fuego">Tierra del Fuego</option>
+						   		</select>	
+            				</div>
+        				</div>
+        				<div class="mb-3">
+        					<div>
+        						<label for="mensaje">Mensaje:</label>
+        						<textarea class="form-control" id="mensaje" name="mensaje" rows="3" placeholder="Deja tu mensaje"></textarea>
+        					</div>
+        				</div>
+        				<div class="d-grid gap-2 col-6 mx-auto">
+          					<button class="btn" id="boton-contacto" type="button">Enviar</button>
+        				</div>
+        			</form>
+        		</div>
+			</section>
+		</div>
+		<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
