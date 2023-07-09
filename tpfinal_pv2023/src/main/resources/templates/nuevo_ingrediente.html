@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ingredientes</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container">
+	
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina" th:text="${edicion}?'MODIFICAR INGREDIENTE':'NUEVO INGREDIENTE'"></h2>
+		</div>
+		<div class="container-fluid my-3 pb-3 pt-3">
+			
+				<div class="row justify-content-center">
+					<div class="col-6">
+						<form class="row g-3 needs-validation" novalidate th:action="${edicion}?@{/ingredientes/modificar}:@{/ingredientes/guardar}" th:object="${ingrediente}" method="post">
+						
+						 	  <div class="row mb-3" th:if="${edicion}" >
+    								<label for="id_ingre" class="col-sm-2 col-form-label">ID: </label>
+    								<div class="col-sm-10">
+       									 <input type="text" class="form-control" id="id_ingre" name="id_ingre" th:value="${ingrediente.id}" readonly>
+       									 <input type="hidden" th:field="*{id}"> 
+   									</div>   									
+   									
+							 </div>							 	  
+						 	  <div class="row mb-3">						 	  		
+							  		<label for="nombre_ingre" class="col-sm-2 col-form-label">NOMBRE: </label>
+							  		<div class="col-sm-10">
+							  			 <input type="text" class="form-control" id="nombre_ingre" placeholder="Nombre Ingrediente" name="nombre_ingre" th:field="*{nombre}">							  			 
+							  			 <div class ="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>							  			 
+							  			 <!-- muestra mensaje de error si existe erorr -->
+							  		</div>					  
+							  </div>
+							  					
+		  				
+		  				<div class="col-12">
+		  					
+		  					<input type="submit" class="btn btn-success" th:value="${edicion}?'Modificar':'Guardar'">
+							<a class="btn btn-success" th:href="@{/index}" role="button">Cancelar</a>
+		  				</div>
+					</form>
+					</div>
+				</div>	
+		</div>
+	
+	
+	</div>
+	
+  	<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 	
+	</body>
+</html>
