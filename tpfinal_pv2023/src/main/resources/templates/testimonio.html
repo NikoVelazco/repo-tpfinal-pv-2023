@@ -47,9 +47,9 @@
 			   <div class=" cuerpo-titulo row row-cols-1 row-cols-md-3 ">
 					  <div class="col bg-success p-2 text-dark bg-opacity-50">
 			     		<div class="card bg-success p-2 text-dark bg-opacity-50" style="width: 100%;">
-							  <div class="card-body" >
-							    <h5 class="card-title">HOLA!! COMO ESTAN?</h5>
-							    <p class="card-text"> Esperamos que disfrutes de la alimentación saludable tanto como 
+							  <div class="card-body card-body-testimonio" >
+							    <h5 class="card-title card-title-testimonio">HOLA!! COMO ESTAN?</h5>
+							    <p class="card-text card-text-testimonio"> Esperamos que disfrutes de la alimentación saludable tanto como 
     								nosotros y encuentres los resultados que estes buscando y al mismo tiempo que puedas divertirte cocinando, 
     								relajarte y desconectarte de todo lo demás! Déjanos tus comentarios porque nos encanta escucharte y siempre
     								 estamos abiertos a tus sugerencias. </p>
@@ -57,11 +57,11 @@
 							  </div>
 						</div>
 				</div>
-				<div class="card" style="width: 18rem" th:each="testi: ${testimonio}">
+				<div class="card card-testimonio" style="width: 18rem" th:each="testi: ${testimonio}">
 					  <img src="/images/usuario.jpeg" class="card-img-top" alt="logo_usuario">
 					  <div class="card-body bg-success p-2 text-dark bg-opacity-50" >
 					  	    <p  th:text= "'Comentario: '+${testi.comentario}"> </p><br>
-					 	    <ul class="list-group list-group-flush bg-success p-2 text-dark bg-opacity-50">
+					 	    <ul class="list-group list-group-flush bg-success p-2 text-dark bg-opacity-50 list-group-testimonio">
 					 	    <li class="list-group-item bg-success p-2 text-dark bg-opacity-50" th:text= "'Usuario: '+ ${testi.usuario}"></li>
 					        <li class="list-group-item bg-success p-2 text-dark bg-opacity-50" th:text = "'Fecha: ' + ${testi.fecha}" ></li>
 	                        </ul><br>
