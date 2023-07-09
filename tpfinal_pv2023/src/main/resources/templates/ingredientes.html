@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ingredientes</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container">
+	
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina">INGREDIENTES</h2>
+		</div>
+		<div class="container my-3 ">  
+		
+			<div class ="row justify-content-center">
+				<div class ="col-5">
+					<div class="table-responsive-sm">
+						<table class="table table-striped table-success table-hover table align-middle">
+							  <thead class="thead-dark">
+							    <tr>
+							      <th scope="col">#</th>
+							      <th scope="col">NOMBRE</th>
+							      <th scope="col">ACCION</th>						     
+							    </tr>
+							  </thead>
+							  <tbody class="table-group-divider">
+							    <tr th:each="ingre: ${ingredientesLista}">
+							      <th scope="row"  th:text="${ingre.id}" ></th>
+							      <td  th:text="${ingre.nombre}"></td>
+							      <td> <a th:href="@{/ingredientes/modificar/}+${ingre.id}"><button type="button" class="btn btn-success btn-sm">MODIFICAR</button></a> 
+										<a th:href="@{/ingredientes/eliminar/}+${ingre.id}"><button type="button" class="btn btn-success btn-sm">ELIMINAR</button></a>								      
+							      </td>						      
+							    </tr>						    
+							  </tbody>
+						</table>
+					</div>
+				</div>
+				<div class ="row justify-content-center">	
+					<div class="d-grid gap-2 col-3 mx-auto">	
+						<a class="btn btn-success" th:href="@{/index}" role="button">SALIR</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+  	<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 	
+	</body>
+</html>
