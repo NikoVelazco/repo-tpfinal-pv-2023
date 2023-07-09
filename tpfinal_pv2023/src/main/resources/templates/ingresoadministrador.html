@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>IngresoAdmin</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container">
+	
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina">INGRESO DE ADMINISTRADOR</h2>
+		</div>		
+	</div>
+	
+	<div class="container" >
+			<div class="row justify-content-center my-3 pb-3 pt-3">
+			
+			<div class="col-5 formulario-mensaje">				
+					<form class="row g-2 needs-validation my-2 letra-form " th:action="@{/gestion/abm}" method="post" style="width: 100%;">					
+						<div class="mb-3 row">
+							<label for="id" class="form-label">Ingrese clave de Administrador</label>
+			  				<input type="number"  name="id" class="form-control" id="id" min ="0">
+			        		<div class="text-danger" th:text="${usuarioEncontrado}?'':'El usuario no existe'" ></div>
+			        		<div class="text-danger" th:text="${usuarioAdmin}?'':'El usuario no es Administrador'" ></div>
+						</div>
+						<input type="hidden" name="numero" th:value="${numero}" />
+						
+						<div class="col-12">
+							<input type="submit" class="btn btn-success" th:value="'INGRESAR'">
+							<a class="btn btn-success" th:href="@{/index}" role="button">CANCELAR</a>
+						</div>						    
+					</form>
+			</div>
+						
+			</div>
+	</div>		
+	
+	<div class="container">	
+	  	<div class="container pie-pagina mb-3">
+	    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+	    </div>
+	 </div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> 	
+	</body>
+</html>
