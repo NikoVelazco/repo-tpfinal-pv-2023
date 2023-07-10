@@ -38,7 +38,7 @@ public class GestionController {
 	public String getIngresoAdminPage(@RequestParam(name = "numero", required = false) int numero,Model model) {
 		model.addAttribute("numero", numero); 
 		model.addAttribute("usuarioEncontrado", true);
-		model.addAttribute("usuarioAdmin", true);
+	/**	model.addAttribute("usuarioAdmin", true);**/
 		return "ingresoadministrador";
 	}
 	
@@ -61,17 +61,17 @@ public class GestionController {
 					}					
 				}
 				else {
-					model.addAttribute("usuarioAdmin", false);
-					model.addAttribute("usuarioEncontrado", true);					
+				/**	model.addAttribute("usuarioAdmin", false);**/
+					model.addAttribute("usuarioEncontrado", false);					
 				}				
 			}
 			else {
-				model.addAttribute("usuarioAdmin", true);
+			/**	model.addAttribute("usuarioAdmin", true);**/
 				model.addAttribute("usuarioEncontrado", false);	
 			}				
 		}
 		else {
-			model.addAttribute("usuarioAdmin", false);
+		/**	model.addAttribute("usuarioAdmin", false);**/
 			model.addAttribute("usuarioEncontrado", false);				
 		}
 		
