@@ -25,8 +25,8 @@
 					<form class="row g-2 needs-validation my-2 letra-form" th:action="@{/servicios/imc-calculo}" th:object="${imco}" method="post" style="width: 100%;">					
 						<div class="mb-3 row">
   							<label for="idUsuario" class="form-label">Ingrese Id de Usuario</label>
-    <input type="number"  name="idUsuario" class="form-control" id="idUsuario">
-            <div class="text-danger" th:text="${usuarioEncontrado}?'':'No existe el usuario'" ></div>
+    						<input type="number"  name="idUsuario" class="form-control" id="idUsuario">
+           					<div class="text-danger" th:text="${usuarioEncontrado}?'':'No existe el usuario'" ></div>
   						</div>
   						<div class="mb-3 row">
 							<label for="exampleFormControlInput1" class="form-label">Peso:</label>
@@ -39,7 +39,8 @@
 					    	<div class="text-danger" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>  
 		                </div>
 						<div class="col-12">
-							<button type="submit" class="btn" id="boton-contacto">CALCULAR IMC</button>
+							<button type="submit" class="btn" id="boton-contacto">Calcular Imc</button>
+							<a th:href="@{/servicios/buscar-registro}" class="btn" id="boton-contacto" style="color: dark;">Ver historial IMC</a>
 						</div>						    
 					</form>
 				</div>
