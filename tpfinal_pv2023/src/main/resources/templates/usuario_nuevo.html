@@ -24,7 +24,7 @@
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 my-2">
 					<section class="d-flex justify-content-center align-items-center">
 						<div class="card col-xs-12 col-sm-6 col-md-6 col-lg-4 p-4 formulario-mensaje" style="width: 100%;">
-		    				<form class="letra-form" th:action="${modificar}?@{/usuario/modificar}:@{/usuario/guardar}" th:object="${usuario}" method="post">
+		    				<form class="letra-form" th:action="${modificar}?@{/usuario/modificar/}+${usuario.id}:@{/usuario/guardar}" th:object="${usuario}" method="post"> <!--AcaModifico-->
 								<div class="mb-3">
 								   <label for="admin" class="form-label">Tipo de Usuario:</label>
 							       <select th:field="*{rolUsuario}" class="form-select" id="admin" name="admin" placeholder="Seleccionar">

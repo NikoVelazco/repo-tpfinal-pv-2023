@@ -32,6 +32,17 @@ public class UsuarioController {
 	private IUsuarioService usuarioService;
 	
 	/**
+	 * Petición para dirigirse a la página usuario_listado
+	 * @param model vicula la variable del tipo usuario al formulario
+	 * @return página usuario_listado
+	 */
+	@GetMapping("/listado")
+	public String getListUserPage(Model model) {
+		model.addAttribute("usuarios", usuarioService.getListaUsuario());
+		return "usuario_listado";
+	}
+	
+	/**
 	 * Petición para dirigirse a la página usuario_nuevo
 	 * @param model vincula la variable de tipo usr al formulario
 	 * la variable modificar indica la acción que se debe realizar
@@ -74,9 +85,9 @@ public class UsuarioController {
 	@GetMapping("/modificar/{id}")
 	public String getModificarUsuarioPage(@PathVariable(value="id")Long id, Model model) {
 		boolean modificar = true;
+		Usuario usuarioaModificar = usuarioService.findByUser(id);
+		model.addAttribute("usuario", usuarioaModificar);
     	model.addAttribute("modificar", modificar);
-    	Usuario usuarioEncontrado = usuarioService.findByUser(id);
-		model.addAttribute("usuario", usuarioEncontrado);
 		return "usuario_nuevo";
 	}
 	
@@ -87,19 +98,15 @@ public class UsuarioController {
 	 * @param model vincula la variable usr al formulario
 	 * @return usuario_nuevo
 	 */
-	@PostMapping("/modificar")
-	public String modificarUsuario(@Valid @ModelAttribute("usuario")Usuario usuario, BindingResult result, Model model) {
-		Usuario usuarioEncontrado = usuarioService.findByUser(usuario.getId());
+	@PostMapping("/modificar/{id}")
+	public String modificarUsuario(@Valid @ModelAttribute("usuario")Usuario usuarioModificar, BindingResult result, Model model) {
 	    boolean modificar = true;
 		if (result.hasErrors()) {
-			usuario.setId(usuarioEncontrado.getId());
-			model.addAttribute("usuario", usuario);
 			model.addAttribute("modificar", modificar);
 			return "usuario_nuevo";
-		} else {
-			usuarioService.modificarUsuario(usuarioEncontrado);
-			return "redirect:/usuario/listado";
 		}
+			usuarioService.modificarUsuario(usuarioModificar);
+			return "redirect:/usuario/listado";
 	}
 	
 	/**

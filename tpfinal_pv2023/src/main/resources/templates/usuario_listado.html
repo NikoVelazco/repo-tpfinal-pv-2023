@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Usuarios</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h1 class="titulo-pagina">LISTA DE USUARIOS</h1>
+		</div>
+		<div class="container my-3">
+			<section class="col-6 my-2" th:each="usr: ${usuarios}">
+					<div class="row custom-row align-items-center justify-content-center">
+						<div class="col">
+							<div class="accordion" id="acordionExample">
+                				<div class="accordion-item">
+                					<h2 class="accordion-header" >
+      									<button id="boton-acordion" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											  <span th:text="${usr.nombre + ' ' + usr.apellido}"></span>
+      									</button>
+    								</h2>
+    								<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      									<div class="accordion-body" id="cuerpo-acordion">
+											<p >¿Es Admin?: <span th:text="${usr.rolUsuario}"></span></p>
+											<p >Email: <span th:text="${usr.email}"></span></p>
+                							<p >Fecha de Nacimiento: <span th:text="${#temporals.format(usr.fechaNacimiento, 'dd/MM/yyy')}"></span></p>
+                							<p >Teléfono: <span th:text="${usr.telefono}"></span></p>
+                							<p >Sexo: <span th:text="${usr.sexo}"></span></p>
+                							<p >Estatura: <span th:text="${usr.estatura}"></span></p>
+      									</div>
+   		 							</div>
+                				</div>
+                			</div>
+                			<div> 
+                				<a th:href="@{/usuario/modificar/}+${usr.id}"><button type="button" class="btn btn-info my-2">Modificar</button></a>
+								<a th:href="@{/usuario/eliminar/}+${usr.id}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                			</div>
+						</div>
+					</div>
+				</section>
+		</div>
+		<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
