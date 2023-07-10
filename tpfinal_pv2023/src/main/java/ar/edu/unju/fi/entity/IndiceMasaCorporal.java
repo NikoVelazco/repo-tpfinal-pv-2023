@@ -171,4 +171,13 @@ public class IndiceMasaCorporal {
 		}
 	}
 	
+	/**
+	 * Método para cualcular el peso ideal de un usuario
+	 * @return pesoideal
+	 */
+	public double obtenerPeso() {
+		int estaturaCm = (int) (userImc.getEstatura()*100);
+		return (double)(estaturaCm - 100 + ((userImc.calcularEdadUsuario()/10)*0.9));
+	}
+	
 }

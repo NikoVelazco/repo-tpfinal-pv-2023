@@ -16,7 +16,7 @@ public interface IIndiceMasaCorporalService {
 	void guardarImc(IndiceMasaCorporal imc, Long idUser); //Guardar un imc
 	void eliminarImc(Long id); //Elimina un imc
 	void modificarImc(IndiceMasaCorporal imc);//Modifica un imc
-	//double getPesoIdeal(Long id);//Obtiene el peso ideal de un usuario
+	double getPesoIdeal(Long idUser);//Obtiene el peso ideal de un usuario
 	List<IndiceMasaCorporal> getFechaImcDesc(Long id);//Lista que contiene a los imc ordenado de manera decreciente
 	
 }
