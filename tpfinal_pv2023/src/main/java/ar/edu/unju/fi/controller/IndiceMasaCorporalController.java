@@ -92,5 +92,43 @@ public class IndiceMasaCorporalController {
 		return modelAndView;
 	}
 	
+	/**
+	 * Metodo muestra el listado de registro de imc
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/historial")
+	public String obtenerHistorialImc(Model model) {
+		boolean existeUsuario=true;
+		boolean bandDatos = false;
+		model.addAttribute("existeUsuario", existeUsuario);
+		model.addAttribute("datos", bandDatos);
+		return "historial_imc";
+	}
+	
+	/**
+	 * Metodo que busca los registros de imc
+	 * @param model
+	 * @param idUsuario
+	 * @return
+	 */
+	@GetMapping("/buscar-registro")
+	public String buscarHistorialImc(Model model, Long idUsuario) {
+		boolean existeUsuario;
+		if(usuarioService.comprobarExistenciaUsuario(idUsuario)) {
+			existeUsuario = true;
+			model.addAttribute("existeUsuario", existeUsuario);
+			model.addAttribute("imco", indiceMasaCorporalService.getFechaImcDesc(idUsuario));
+			model.addAttribute("usuario", usuarioService.findByUser(idUsuario));
+			model.addAttribute("datos", true);
+		}else {
+			existeUsuario=false;
+			model.addAttribute("existeUsuario", existeUsuario);
+			model.addAttribute("datos", false);
+			model.addAttribute("usuario", null);
+			model.addAttribute("imco", null);
+		}
+		return "historial_imc";
+	}
 	
 }
