@@ -38,9 +38,9 @@
 						<input type="hidden" name="numero" th:value="${numero}" />
 						
 						<div class="col-12">
-							<input th:if="${usuarioEncontrado}" type="submit" class="btn btn-success" th:value="'INGRESAR'">
-							<a th:if="${usuarioEncontrado}" class="btn btn-success" th:href="@{/index}" role="button">CANCELAR</a>
-							<a th:unless="${usuarioEncontrado}" class="btn btn-success" th:href="@{/index}" role="button">SALIR</a>
+							<input type="submit" class="btn btn-success" th:value="'INGRESAR'">
+							<a  class="btn btn-success" th:href="@{/index}" role="button">CANCELAR</a>
+						<!--  	<a th:unless="${usuarioEncontrado}" class="btn btn-success" th:href="@{/index}" role="button">SALIR</a>-->
 						</div>						    
 					</form>
 			</div>
