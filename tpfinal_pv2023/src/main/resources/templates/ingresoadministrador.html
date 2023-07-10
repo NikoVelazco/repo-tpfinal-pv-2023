@@ -32,14 +32,15 @@
 						<div class="mb-3 row">
 							<label for="id" class="form-label">Ingrese clave de Administrador</label>
 			  				<input type="number"  name="id" class="form-control" id="id" min ="0">
-			        		<div class="text-danger" th:text="${usuarioEncontrado}?'':'El usuario no existe'" ></div>
-			        		<div class="text-danger" th:text="${usuarioAdmin}?'':'El usuario no es Administrador'" ></div>
+			        		<div class="text-danger" th:text="${usuarioEncontrado}?'':'El usuario no existe o no es Administrodor'" ></div>
+			        		<!--  <div class="text-danger" th:text="${usuarioAdmin}?'':'El usuario no es Administrador'" ></div>-->
 						</div>
 						<input type="hidden" name="numero" th:value="${numero}" />
 						
 						<div class="col-12">
-							<input type="submit" class="btn btn-success" th:value="'INGRESAR'">
-							<a class="btn btn-success" th:href="@{/index}" role="button">CANCELAR</a>
+							<input th:if="${usuarioEncontrado}" type="submit" class="btn btn-success" th:value="'INGRESAR'">
+							<a th:if="${usuarioEncontrado}" class="btn btn-success" th:href="@{/index}" role="button">CANCELAR</a>
+							<a th:unless="${usuarioEncontrado}" class="btn btn-success" th:href="@{/index}" role="button">SALIR</a>
 						</div>						    
 					</form>
 			</div>
