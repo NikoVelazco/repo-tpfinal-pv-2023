@@ -74,7 +74,7 @@ public class GestionController {
 		/**	model.addAttribute("usuarioAdmin", false);**/
 			model.addAttribute("usuarioEncontrado", false);				
 		}
-		
+		model.addAttribute("numero", numero);
 		return "ingresoadministrador";
 		
 	}
