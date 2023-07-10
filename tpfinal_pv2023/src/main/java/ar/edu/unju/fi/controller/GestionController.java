@@ -42,6 +42,13 @@ public class GestionController {
 		return "ingresoadministrador";
 	}
 	
+	/**
+	 * Peticion para confirmar id de adminstrador y derivar al ABM solicitado
+	 * @param id del usuario
+	 * @param numero es el numero que indica el ABM que desea hacer el usuario
+	 * @param model es la pagina ingresoadministrador
+	 * @return pagina de ABM correspondiente o pagina ingresoadministrador 
+	 */
 	@PostMapping("/abm")
 	public String getAltaBajaModificacionPage(@RequestParam("id") Long id, @RequestParam("numero") int numero, Model model){
 		boolean existe = usuarioService.comprobarExistenciaUsuario(id);
@@ -54,24 +61,24 @@ public class GestionController {
 					case 2: return "redirect:/recetas/ediciones";
 					case 3: return "redirect:/ingredientes/nuevo";
 					case 4: return "redirect:/ingredientes/listado";
-					case 5: return "redirect:/usuario/nuevo"; /*agregar ruta a formulario de usuario adminstrador*/
-					case 6: return "redirect:/usuario/listado"; /*agregar ruta edicion de usuarios*/
-					case 7: return "redirect:/testimonio/edicion"; /*agregar ruta edicion de testimonio*/
+					case 5: return "redirect:/usuario/nuevo"; 
+					case 6: return "redirect:/usuario/listado"; 
+					case 7: return "redirect:/testimonio/edicion"; 
 										
 					}					
 				}
 				else {
-				/**	model.addAttribute("usuarioAdmin", false);**/
+				
 					model.addAttribute("usuarioEncontrado", false);					
 				}				
 			}
 			else {
-			/**	model.addAttribute("usuarioAdmin", true);**/
+			
 				model.addAttribute("usuarioEncontrado", false);	
 			}				
 		}
 		else {
-		/**	model.addAttribute("usuarioAdmin", false);**/
+		
 			model.addAttribute("usuarioEncontrado", false);				
 		}
 		model.addAttribute("numero", numero);
