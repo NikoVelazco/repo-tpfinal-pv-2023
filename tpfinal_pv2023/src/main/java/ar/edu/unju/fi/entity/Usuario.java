@@ -88,8 +88,8 @@ public class Usuario {
 	 * En este caso, la propiedad "userImc" en la clase IndiceMasaCorporal establece esta relación.
 	 * La lista ListaImc representa la colección de objetos de la clase IndiceMasaCorporal asociados a la clase actual.
 	 */
-	/*@OneToMany(mappedBy = "userImc")
-	private List<IndiceMasaCorporal> ListaImc;*/
+	@OneToMany(mappedBy = "userImc")
+	private List<IndiceMasaCorporal> ListaImc;
 	
 	@Column(name="usr_estado")
 	private boolean estado; //Estado que indicado para la eliminación lógica
@@ -121,7 +121,7 @@ public class Usuario {
 	 * @param estatura
 	 */
 	public Usuario(Long id, String nombre, String apellido, String email, LocalDate fechaNacimiento, String telefono,
-			String sexo, double estatura, boolean estado, boolean rolUsuario, List<Testimonio> testimonio/*, List<IndiceMasaCorporal> ListaImc*/) {
+			String sexo, double estatura, boolean estado, boolean rolUsuario, List<Testimonio> testimonio, List<IndiceMasaCorporal> ListaImc) {
 		super();
 		this.id=id;
 		this.nombre = nombre;
@@ -134,8 +134,7 @@ public class Usuario {
 		this.estado=estado;
 		this.rolUsuario=rolUsuario;
 		this.testimonio = testimonio;
-
-		/*this.ListaImc=ListaImc;*/
+		this.ListaImc=ListaImc;
 	}
 
 	/**
@@ -302,17 +301,17 @@ public class Usuario {
 	 * Obtiene la lista imc
 	 * @return ListaImc
 	 */
-	/*public List<IndiceMasaCorporal> getListaImc() {
+	public List<IndiceMasaCorporal> getListaImc() {
 		return ListaImc;
-	}*/
+	}
 
 	/**
 	 * Setea ListaImc
 	 * @param listaImc
 	 */
-	/*public void setListaImc(List<IndiceMasaCorporal> listaImc) {
+	public void setListaImc(List<IndiceMasaCorporal> listaImc) {
 		ListaImc = listaImc;
-	}*/
+	}
 
 	/**
 	 * Método para calcular la edad de un usuario
