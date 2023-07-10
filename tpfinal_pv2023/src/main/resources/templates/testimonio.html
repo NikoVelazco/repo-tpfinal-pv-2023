@@ -37,11 +37,14 @@
 						   
 						    <div class="col-12">
 								<input type="submit" class="btn btn-success" th:value="'BUSCAR POR FECHA'">
-								<a class="btn btn-success" th:href="@{/testimonio/listado}" role="button">LISTADO COMPLETO</a>
+								<a  class="btn btn-success" th:href="@{/testimonio/listado}" role="button">LISTADO COMPLETO</a><br>
 							</div>						    
 					</form>	<br>	
 				</div>
 			</div>	
+			</div> <a th:unless="${edicion}" th:href="@{/testimonio/nuevo}"><button type="button" class="btn btn-success">AGREGAR NUEVO TESTIMONIO</button></a>
+			    	<a th:if="${edicion}"class="btn btn-success" th:href="@{/index}" role="button">SALIR</a><br><br>
+			
 			  <div class="cuerpo-titulo row align-items-start">
 			   
 			   <div class=" cuerpo-titulo row row-cols-1 row-cols-md-3 ">
@@ -62,19 +65,18 @@
 					  <div class="card-body bg-success p-2 text-dark bg-opacity-50" >
 					  	    <p  th:text= "'Comentario: '+${testi.comentario}"> </p><br>
 					 	    <ul class="list-group list-group-flush bg-success p-2 text-dark bg-opacity-50 list-group-testimonio">
-					 	    <li class="list-group-item bg-success p-2 text-dark bg-opacity-50" th:text= "'Usuario: '+ ${testi.usuario}"></li>
+					 	    <li class="list-group-item bg-success p-2 text-dark bg-opacity-50" th:text= "'Usuario: '+ ${testi.usuario.nombre}"></li>
 					        <li class="list-group-item bg-success p-2 text-dark bg-opacity-50" th:text = "'Fecha: ' + ${testi.fecha}" ></li>
 	                        </ul><br>
-				   		   <a class="btn btn-success" th:href="@{/testimonio/modificar/}+${testi.id}" role="button">Editar</a>								
-	                		<a class="btn btn-success" th:href="@{/testimonio/eliminar/}+${testi.id}" role="button">Eliminar</a>	
+				   		   <a th:if="${edicion}" class="btn btn-success" th:href="@{/testimonio/modificar/}+${testi.id}" role="button">Editar</a>								
+	                		<a th:if="${edicion}" class="btn btn-success" th:href="@{/testimonio/eliminar/}+${testi.id}" role="button">Eliminar</a>	
 					</div>
 				</div>	
 								   
 			  </div>
 					   		
 			 </div><br>
-			    	</div> <a th:href="@{/testimonio/nuevo}"><button type="button" class="btn btn-success">AGREGAR NUEVO TESTIMONIO</button></a>
-			    </div>	<br>
+			    				    </div>	
 		    	
 	<div class="container pie-pagina">
 		<footer th:replace="~{layouts/footer :: footer}"></footer>
