@@ -101,7 +101,7 @@ public class IndiceMasaCorporalController {
 	public String obtenerHistorialImc(Model model) {
 		boolean existeUsuario=true;
 		boolean bandDatos = false;
-		model.addAttribute("existeUsuario", existeUsuario);
+		model.addAttribute("existeUsuario", existeUsuario); //fijarse acá
 		model.addAttribute("datos", bandDatos);
 		return "historial_imc";
 	}
@@ -129,6 +129,48 @@ public class IndiceMasaCorporalController {
 			model.addAttribute("imco", null);
 		}
 		return "historial_imc";
+	}
+	
+	/**
+	 * Obtiene la página del buscador de peso ideal para el inicio de sesión.
+	 * @param model El objeto Model que se utiliza para pasar datos a la vista.
+	 * @return El nombre de la vista "loginpeso" que se mostrará al usuario.
+	 */
+	@GetMapping("/loginpesoideal")
+	public String obtenerPaginaBuscadorPesoIdeal(Model model) {
+		boolean existeUsuario=true;
+		model.addAttribute("existeUsuario", existeUsuario);
+		return "loginpeso";
+	}
+	
+	/**
+	 * Retorna la vista de la página de resultados del peso ideal.
+	 * @return El nombre de la vista "pesoresultado" que se mostrará al usuario.
+	 */
+	@GetMapping("/peso-ideal")
+	public String getPesoIdelaPage() {
+		return "pesoresultado";
+	}
+	
+	/**
+	 * Busca el peso ideal y muestra la página de resultados del peso ideal para un usuario específico.
+	 * @param idUsuario El ID del usuario para el cual se busca el peso ideal.
+	 * @return Un objeto ModelAndView que contiene la vista y los datos necesarios para mostrar la página de resultados del peso ideal.
+	 */
+	@GetMapping("/buscar-peso-ideal")
+	public ModelAndView buscarPesoIdeal(Long idUsuario) {
+		boolean existeUsuario=true;
+		ModelAndView modelAndView = new ModelAndView();
+		if(usuarioService.comprobarExistenciaUsuario(idUsuario)) {
+				modelAndView.setViewName("pesoresultado");
+				modelAndView.addObject("calculopeso",indiceMasaCorporalService.getPesoIdeal(idUsuario));
+				modelAndView.addObject("usuario", usuarioService.findByUser(idUsuario));
+		}else {
+			existeUsuario = false;
+			modelAndView.addObject("existeUsuario", existeUsuario);
+			modelAndView.setViewName("loginpeso");
+		}
+		return modelAndView;
 	}
 	
 }

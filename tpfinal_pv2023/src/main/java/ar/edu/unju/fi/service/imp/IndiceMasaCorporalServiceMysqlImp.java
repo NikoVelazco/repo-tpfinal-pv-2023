@@ -130,4 +130,16 @@ public class IndiceMasaCorporalServiceMysqlImp implements IIndiceMasaCorporalSer
 		return imcList;
 	}
 
+	/**
+	 * Método que calcula el peso ideal de una persona
+	 */
+	@Override
+	public double getPesoIdeal(Long id) {
+		// TODO Auto-generated method stub
+		Usuario usuarioPesoIdeal = new Usuario();
+		usuarioPesoIdeal = usuarioService.findByUser(id);
+			int estaturaCm = (int) (usuarioPesoIdeal.getEstatura() * 100);
+			return (double)(estaturaCm - 100 + ((usuarioPesoIdeal.calcularEdadUsuario()/10)*0.9)); 
+	}
+
 }

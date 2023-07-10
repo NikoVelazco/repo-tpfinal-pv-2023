@@ -55,7 +55,7 @@ public class GestionController {
 					case 3: return "redirect:/ingredientes/nuevo";
 					case 4: return "redirect:/ingredientes/listado";
 					case 5: return "redirect:/usuario/nuevo"; /*agregar ruta a formulario de usuario adminstrador*/
-					case 6: return "redirect:/usuario/modificar"; /*agregar ruta edicion de usuarios*/
+					case 6: return "redirect:/usuario/listado"; /*agregar ruta edicion de usuarios*/
 					case 7: return "redirect:/testimonio/edicion"; /*agregar ruta edicion de testimonio*/
 										
 					}					

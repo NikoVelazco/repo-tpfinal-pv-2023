@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<link rel="icon" th:href="@{/images/vidasanaico.png}">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Peso Ideal</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header th:replace="~{layouts/header :: header}"></header>
+			<img class="img-fluid my-1" id="img-banner" th:src="@{/images/banner.jpg}" alt="Imagen del banner">
+		</div>
+		<div class="container cuerpo-titulo my-1">
+			<h2 class="titulo-pagina">PESO IDEAL</h2>
+		</div>
+		<div class="container my-2 py-2">
+			<div style="text-align: center;">
+        		<h1>A continuación se muestra su peso ideal: </h1>
+        		<h2 class="card-title"  th:text="${usuario.nombre} + ' ' +${usuario.apellido}"></h2>
+        		<p class="card-text" th:text="'Su peso ideal es '+ ${calculopeso}+ ' Kg' "></p>
+        		<div class="card-buttons">
+            		<a th:href="@{/servicios/loginpesoideal}" class="btn" id="boton-contacto">Volver</a>
+        		</div>
+    		</div>
+		</div>
+		<div class="container pie-pagina">
+    		<footer th:replace="~{layouts/footer :: footer}"></footer>
+    	</div>
+    	<script th:fragment ="script_bootstrap" type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
