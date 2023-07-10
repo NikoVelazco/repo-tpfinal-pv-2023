@@ -46,6 +46,15 @@ public class TestimonioController {
 	@GetMapping("/listado")
 	public String getTestimonioPage(Model model){
 		model.addAttribute("testimonio", testimonioService.getListaTestimonio());
+		model.addAttribute("edicion", false);
+		return "testimonio";
+		
+	}
+	
+	@GetMapping("/edicion")
+	public String getTestimonioPage2(Model model){
+		model.addAttribute("testimonio", testimonioService.getListaTestimonio());
+		model.addAttribute("edicion", true);
 		return "testimonio";
 		
 	}
