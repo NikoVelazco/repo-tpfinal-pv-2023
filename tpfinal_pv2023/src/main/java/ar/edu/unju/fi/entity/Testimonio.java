@@ -4,12 +4,16 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,9 +37,10 @@ public class Testimonio {
 	public Long id;
 	
 	
-	@Column(name="usuario_id")
-	@NotNull(message="Debe seleccionar un Usuario")
-	private String usuario;
+	@ManyToOne
+	@JoinColumn(name="usuario_id")
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Usuario usuario;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message="La fecha no puede ser vacia")
@@ -69,7 +74,7 @@ public class Testimonio {
 
 	
 
-	public Testimonio(Long id, @NotNull(message = "Debe seleccionar un Usuario") String usuario,
+	public Testimonio(Long id, @NotNull(message = "Debe seleccionar un Usuario") Usuario usuario,
 			@NotBlank LocalDate fecha, @NotBlank String comentario, boolean estado) {
 		super();
 		this.id = id;
@@ -78,7 +83,10 @@ public class Testimonio {
 		this.comentario = comentario;
 		this.estado = estado;
 	}
-
+	public Testimonio(Usuario usuario) {
+		this.usuario = usuario;
+		
+	}
 
 	/**
 	 * Metodo que recupera el atributo id
@@ -115,7 +123,7 @@ public class Testimonio {
 	 * @return nombre
 	 */
 
-	public String getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 	/**
@@ -123,7 +131,7 @@ public class Testimonio {
 	 * @param usuario
 	 */
 
-	public void setUsuario(String usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 

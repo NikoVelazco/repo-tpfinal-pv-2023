@@ -5,11 +5,15 @@ import java.time.Period;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
@@ -91,7 +95,13 @@ public class Usuario {
 	private boolean estado; //Estado que indicado para la eliminación lógica
 	
 	@Column(name="usr_es_admin")
-	private boolean rolUsuario; /*Esto indica si es admin o no
+	private boolean rolUsuario; /*Esto indica si es admin o no*/
+	
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="usuario_testimonio", joinColumns=@JoinColumn(name="usr_id"),
+	inverseJoinColumns=@JoinColumn(name="id_testimonio"))
+	List<Testimonio> testimonio;
 	
 	/**
 	 * Constructor por defecto
@@ -111,7 +121,7 @@ public class Usuario {
 	 * @param estatura
 	 */
 	public Usuario(Long id, String nombre, String apellido, String email, LocalDate fechaNacimiento, String telefono,
-			String sexo, double estatura, boolean estado, boolean rolUsuario/*, List<IndiceMasaCorporal> ListaImc*/) {
+			String sexo, double estatura, boolean estado, boolean rolUsuario, List<Testimonio> testimonio/*, List<IndiceMasaCorporal> ListaImc*/) {
 		super();
 		this.id=id;
 		this.nombre = nombre;
@@ -123,6 +133,8 @@ public class Usuario {
 		this.estatura = estatura;
 		this.estado=estado;
 		this.rolUsuario=rolUsuario;
+		this.testimonio = testimonio;
+
 		/*this.ListaImc=ListaImc;*/
 	}
 
@@ -312,6 +324,21 @@ public class Usuario {
 		Period periodo = Period.between(fechaNacimiento, fechaActual);
 		edadUsuario = (byte) (periodo.getYears());
 		return edadUsuario;
+	}
+	/**
+	 * Obtiene la lista testimonio
+	 * @return testimonio
+	 */
+	public List<Testimonio> getTestimonio() {
+		return testimonio;
+	}
+/**
+ * Setea la lista testimonio
+ * @param testimonio
+ */
+
+	public void setTestimonio(List<Testimonio> testimonio) {
+		this.testimonio = testimonio;
 	}
 
 	
