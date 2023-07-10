@@ -8,11 +8,7 @@ import java.util.List;
  * Interfaz IUsuarioService
  */
 public interface IUsuarioService {
-	//public Usuario obtenerUsuario();
-	//public List<Usuario> obtenerLista();
-	//public Usuario buscarUsuario(Long id);
-	//public boolean existeUsuario(Long id);
-	
+
 	List<Usuario> getListaUsuario();
 	Usuario getUsuario();
 	void guardarUsuario(Usuario usuario);

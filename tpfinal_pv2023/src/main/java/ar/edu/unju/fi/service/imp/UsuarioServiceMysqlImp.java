@@ -59,7 +59,6 @@ public class UsuarioServiceMysqlImp implements IUsuarioService{
 	@Override
 	public void modificarUsuario(Usuario usuario) {
 		// TODO Auto-generated method stub
-		usuario.setId(usuario.getId());
 		usuario.setEstado(true);
 		usuarioRepository.save(usuario);
 	}
